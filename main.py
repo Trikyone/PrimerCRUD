@@ -28,10 +28,15 @@ class App:
         #Agregando Buscar
         self.txt_buscar = Entry(self.ventana, font=('Arial', 12), textvariable= self.buscar_).place(x=60, y=340)
 
+    def vaciarEntry(self, text):
+        self.nombre.set(text)
+        self.edad.set(text)
+        self.carrera.set(text)
+
 
     def dibujarBoton(self):
         self.btn_guardar = Button(self.ventana, text="Guardar", relief="flat", background="#0051C8",cursor="hand2", foreground="white", command= lambda : self.guardar()).place(x=750, y=340, width=90)
-        self.btn_cancelar = Button(self.ventana, text="Cancelar", relief="flat", background="red",cursor="hand2", foreground="white").place(x=850, y=340, width=90)
+        self.btn_cancelar = Button(self.ventana, text="Cancelar", relief="flat", background="red",cursor="hand2", foreground="white", command= lambda: self.vaciarEntry("") ).place(x=850, y=340, width=90)
 
         #Agregando Buscar
         self.btn_buscar= Button(self.ventana, text="Filtrar", relief="flat", background="green", cursor="hand2", foreground="white", command=lambda: self.buscar(self.buscar_.get())).place(x=260, y=340, width=90)
@@ -54,8 +59,6 @@ class App:
 
     def LimpiarLista(self):
         self.lista.delete(*self.lista.get_children())
-
-
 
 
     def dibujarLista(self, ref):
